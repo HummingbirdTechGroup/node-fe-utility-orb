@@ -1,15 +1,23 @@
-executor: default
-
 description: Checks the types in a typescript project.
 
 parameters:
-  type-check-intruction:
+  instruction:
     type: string
     default: tsc
     description: yarn instruction used to check/validate types
+  version:
+    default: 15.1
+    description: >
+      A full version tag must be specified. Example: "13.11.0" For a full list
+      of releases, see the following: https://nodejs.org/en/download/releases
+    type: string
+
+executor:
+  name: default
+  tag: << parameters.version >>
 
 steps:
   - restore-repo
   - run:
       name: Checking Types are Valid
-      command: yarn <<parameters.type-check-instruction>>
+      command: yarn <<parameters.instruction>>

@@ -1,13 +1,25 @@
-executor: default
-
 parameters:
   jest-workers:
-    type: integer
+    type: string
     default: 1
     description: Set the number of workers used to run jest tests in.
+  instruction:
+    type: string
+    default: test
+    description: Set the yarn command to use. `yarn <your instruction>`
+  version:
+    default: 15.1
+    description: >
+      A full version tag must be specified. Example: "13.11.0" For a full list
+      of releases, see the following: https://nodejs.org/en/download/releases
+    type: string
+
+executor:
+  name: default
+  tag: << parameters.version >>
 
 steps:
   - restore-repo
   - run:
       name: Running Unit and Integration Tests
-      command: yarn test -w <<parameters.jest-workers>>
+      command: yarn <<parameters.instruction>> -w <<parameters.jest-workers>>
