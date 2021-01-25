@@ -8,7 +8,7 @@ parameters:
     default: test
     description: Set the yarn command to use. `yarn <your instruction>`
   version:
-    default: 15.1
+    default: "15.1"
     description: >
       A full version tag must be specified. Example: "13.11.0" For a full list
       of releases, see the following: https://nodejs.org/en/download/releases
