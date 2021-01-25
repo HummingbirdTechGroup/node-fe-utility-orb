@@ -1,0 +1,40 @@
+parameters:
+  show-warning-logs:
+    type: boolean
+    default: false
+    description: If true it will print the non-fatal `warnings` in the console
+  version:
+    default: "15.1"
+    description: >
+      A full version tag must be specified. Example: "13.11.0" For a full list
+      of releases, see the following: https://nodejs.org/en/download/releases
+    type: string
+  instruction:
+    type: string
+    default: lint
+    description: Linting command passed to yarn
+
+executor:
+  name: default
+  tag: << parameters.version >>
+
+steps:
+  - restore-repo
+  - when:
+      condition:
+        equal:
+          - true
+          - << parameters.show-warning-logs >>
+      steps:
+        - run:
+            name: Linting Code
+            command: yarn <<parameters.instruction>>
+  - when:
+      condition:
+        equal:
+          - false
+          - << parameters.show-warning-logs >>
+      steps:
+        - run:
+            name: Linting Code Quietly
+            command: yarn <<parameters.instruction>> --quiet

@@ -1,0 +1,22 @@
+parameters:
+  instruction:
+    type: string
+    default: build
+    description: Change the yarn command used to validate the projects build.
+
+  version:
+    default: "15.1"
+    description: >
+      A full version tag must be specified. Example: "13.11.0" For a full list
+      of releases, see the following: https://nodejs.org/en/download/releases
+    type: string
+
+executor:
+  name: default
+  tag: << parameters.version >>
+
+steps:
+  - restore-repo
+  - run:
+      name: Check the project build
+      command: yarn <<parameters.instruction>>

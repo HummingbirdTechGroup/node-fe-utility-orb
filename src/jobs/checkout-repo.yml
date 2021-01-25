@@ -1,0 +1,21 @@
+description: Setup step for installing node packages and creating a cache for downstream jobs to run off.
+
+parameters:
+  version:
+    default: "15.1"
+    description: >
+      A full version tag must be specified. Example: "13.11.0" For a full list
+      of releases, see the following: https://nodejs.org/en/download/releases
+    type: string
+executor:
+  name: default
+  tag: << parameters.version >>
+steps:
+  - restore-repo
+  - checkout
+  - node/install-packages:
+      pkg-manager: yarn
+  - save_cache:
+      key: v1-repo-{{ .Branch }}-{{ .Revision }}
+      paths:
+        - .
