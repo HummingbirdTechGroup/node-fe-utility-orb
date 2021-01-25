@@ -19,4 +19,4 @@ steps:
   - restore_repo
   - run:
       name: Check the project build
-      command: yarn <<parameters.instructions>>
+      command: yarn <<parameters.instruction>>
