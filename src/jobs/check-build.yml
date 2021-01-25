@@ -16,7 +16,7 @@ executor:
   tag: << parameters.version >>
 
 steps:
-  - restore_repo
+  - restore-repo
   - run:
       name: Check the project build
       command: yarn <<parameters.instruction>>
