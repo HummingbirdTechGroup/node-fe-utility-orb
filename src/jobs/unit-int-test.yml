@@ -1,0 +1,13 @@
+executor: default
+
+parameters:
+  jest-workers:
+    type: integer
+    default: 1
+    description: Set the number of workers used to run jest tests in.
+
+steps:
+  - restore-repo
+  - run:
+      name: Running Unit and Integration Tests
+      command: yarn test -w <<parameters.jest-workers>>

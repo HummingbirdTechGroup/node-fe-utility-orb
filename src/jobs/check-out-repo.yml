@@ -1,0 +1,12 @@
+description: Setup step for installing node packages and creating a cache for downstream jobs to run off.
+
+executor: default
+steps:
+  - restore-repo
+  - checkout
+  - node/install-packages:
+      pkg-manager: yarn
+  - save_cache:
+      key: v1-repo-{{ .Branch }}-{{ .Revision }}
+      paths:
+        - .

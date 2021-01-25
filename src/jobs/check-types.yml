@@ -1,0 +1,15 @@
+executor: default
+
+description: Checks the types in a typescript project.
+
+parameters:
+  type-check-intruction:
+    type: string
+    default: tsc
+    description: yarn instruction used to check/validate types
+
+steps:
+  - restore-repo
+  - run:
+      name: Checking Types are Valid
+      command: yarn <<parameters.type-check-instruction>>

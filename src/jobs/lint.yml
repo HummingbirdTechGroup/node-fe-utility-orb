@@ -1,0 +1,19 @@
+executor: default
+parameters:
+  show-warning-logs:
+    type: boolean
+    default: false
+    description: If true it will print the non-fatal `warnings` in the console
+
+steps:
+  - restore-repo
+  - when:
+      condition: [true, <<parameters.show-warning-logs>>]
+      run:
+        name: Linting Code
+        command: yarn lint
+  - when:
+      condition: [false, <<parameters.show-warning-logs>>]
+      run:
+        name: Linting Code
+        command: yarn lint --quiet

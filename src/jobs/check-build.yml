@@ -1,0 +1,13 @@
+execturos: default
+
+parameters:
+  build-instruction:
+    type: string
+    default: build
+    description: Change the yarn command used to validate the projects build.
+
+steps:
+  - restore_repo
+  - run:
+      name: Check the project build
+      command: yarn <<parameters.build-instructions>>

@@ -1,0 +1,9 @@
+description:
+  Restores the whole repo from the cache. In our use case the npm deps
+  have already been installed
+steps:
+  - restore_cache:
+      keys:
+        - v1-repo-{{ .Branch }}-{{ .Revision }}
+        - v1-repo-{{ .Branch }}
+        - v1-repo

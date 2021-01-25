@@ -1,7 +1,7 @@
 description: >
-  This is a sample executor using Docker and Node.
+  Default node executor. Uses CircleCI's highly cached images. Set a tag parameter to change the version of the image used.
 docker:
-  - image: 'cimg/node:<<parameters.tag>>'
+  - image: "cimg/node:<<parameters.tag>>"
 parameters:
   tag:
     default: lts
