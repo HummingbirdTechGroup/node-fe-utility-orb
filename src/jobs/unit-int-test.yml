@@ -1,7 +1,7 @@
 parameters:
   jest-workers:
     type: string
-    default: 1
+    default: "1"
     description: Set the number of workers used to run jest tests in.
   instruction:
     type: string
